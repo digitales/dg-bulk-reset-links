@@ -261,7 +261,7 @@ class Dg_Bulk_Reset_Links {
         $link = null;
         $blog_url = site_url();
 
-        $link_format = '%1$s/login/?action=rp&key=%2$s&login=%3$s';
+        $link_format = '%1$s/wp-login.php?action=rp&key=%2$s&login=%3$s';
 
         $key = $wpdb->get_var($wpdb->prepare("SELECT user_activation_key FROM $wpdb->users WHERE user_login = %s", $user->user_login ) );
         if ( empty($key) ) {
