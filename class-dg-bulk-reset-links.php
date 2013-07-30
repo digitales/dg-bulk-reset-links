@@ -229,19 +229,21 @@ class Dg_Bulk_Reset_Links {
 	public function admin_bulk_password_links_page() {
         global $wpdb;
 
-        $role = ( isset( $_GET ) && isset( $_GET['role'] ) )? strtolower( (string)$_GET['role'] ) : 'administrator' ;
+        $reset_links = array();
 
+        $role = ( isset( $_GET ) && isset( $_GET['role'] ) )? strtolower( (string)$_GET['role'] ) : 'administrator' ;
 
         // We need to get a list of the users with the administration role.
         $arg = array( 'role' => $role );
 
-        $users = get_users( $arg);
+        if ( current_user_can('edit_users') ) {
 
-        $reset_links = array();
+            $users = get_users( $arg);
 
-        foreach ($users as $user) {
-            $link = $this->generate_reset_link( $user );
-            $reset_links[ $user->user_login ] = array( 'user' => $user, 'link' => $link );
+            foreach ($users as $user) {
+                $link = $this->generate_reset_link( $user );
+                $reset_links[ $user->user_login ] = array( 'user' => $user, 'link' => $link );
+            }
         }
 
 		include_once( 'views/admin.php' );
