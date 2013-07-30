@@ -22,7 +22,7 @@
     <?php if ( ( $reset_links ) & !empty( $reset_links ) ): ?>
         <ul>
             <?php foreach( $reset_links AS $user_login => $link_details ): ?>
-                <li><em><?php echo $user_login; ?></em><br /><a href="<?php echo $link_details['link'];?>"><?php echo $link_details['link'];?></a></li>
+                <li><em><?php echo $user_login; ?> <?php echo $link_details['user']->user_email;?></em><br /><a href="<?php echo $link_details['link'];?>"><?php echo $link_details['link'];?></a></li>
             <?php endforeach; ?>
         </ul>
 
